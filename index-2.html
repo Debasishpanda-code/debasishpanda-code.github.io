@@ -1,0 +1,1092 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Debasish Panda — Data Analyst & AI Builder</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=DM+Mono:wght@300;400;500&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --milk: #FFF3E6;
+      --milk-dim: #F5E8D5;
+      --plum: #381932;
+      --plum-light: #4D2444;
+      --plum-deep: #220F1E;
+      --gold: #C8933A;
+      --gold-light: #E8B55A;
+      --text-light: #FFF3E6;
+      --text-muted: rgba(255,243,230,0.55);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--plum-deep);
+      color: var(--milk);
+      font-family: 'DM Mono', monospace;
+      overflow-x: hidden;
+      cursor: none;
+    }
+
+    /* Custom Cursor */
+    .cursor {
+      position: fixed;
+      width: 12px; height: 12px;
+      background: var(--gold);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      transition: transform 0.15s ease, opacity 0.2s;
+      transform: translate(-50%, -50%);
+    }
+    .cursor-ring {
+      position: fixed;
+      width: 36px; height: 36px;
+      border: 1px solid rgba(200,147,58,0.5);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9998;
+      transition: transform 0.35s ease, width 0.3s, height 0.3s;
+      transform: translate(-50%, -50%);
+    }
+    body:hover .cursor { opacity: 1; }
+
+    /* Grain Overlay */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      opacity: 0.4;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* ─── NAV ─────────────────────────────────────────── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.5rem 4rem;
+      background: rgba(34,15,30,0.7);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(200,147,58,0.12);
+    }
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      color: var(--gold-light);
+    }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a {
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    .nav-links a:hover { color: var(--gold-light); }
+
+    /* ─── HERO ─────────────────────────────────────────── */
+    #hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 8rem 4rem 4rem 6rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-tag {
+      font-size: 0.65rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+      display: flex; align-items: center; gap: 1rem;
+    }
+    .hero-tag::before {
+      content: '';
+      display: block;
+      width: 40px; height: 1px;
+      background: var(--gold);
+    }
+
+    .hero-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(4rem, 7vw, 7rem);
+      font-weight: 700;
+      line-height: 0.92;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.3rem;
+    }
+    .hero-name span {
+      display: block;
+      color: var(--gold-light);
+      font-style: italic;
+      font-weight: 300;
+    }
+
+    .hero-title {
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin: 1.8rem 0 2.5rem;
+      line-height: 2;
+    }
+
+    .hero-bio {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem;
+      font-weight: 300;
+      line-height: 1.8;
+      color: rgba(255,243,230,0.8);
+      max-width: 420px;
+      margin-bottom: 3rem;
+    }
+
+    .hero-cta {
+      display: flex; gap: 1rem; flex-wrap: wrap;
+    }
+    .btn-primary {
+      padding: 0.85rem 2.2rem;
+      background: var(--gold);
+      color: var(--plum-deep);
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: none;
+      cursor: none;
+      transition: background 0.3s, transform 0.2s;
+    }
+    .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+    .btn-outline {
+      padding: 0.85rem 2.2rem;
+      background: transparent;
+      border: 1px solid rgba(200,147,58,0.4);
+      color: var(--milk);
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: border-color 0.3s, transform 0.2s;
+      cursor: none;
+    }
+    .btn-outline:hover { border-color: var(--gold); transform: translateY(-2px); }
+
+    /* Hero Right — Photo */
+    .hero-right {
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-photo-frame {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+    }
+    .hero-photo-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      filter: sepia(0.15) contrast(1.05);
+      opacity: 0.9;
+    }
+    .hero-photo-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to right,
+        var(--plum-deep) 0%,
+        transparent 35%,
+        transparent 70%,
+        var(--plum-deep) 100%
+      );
+    }
+    .hero-photo-bottom {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 35%;
+      background: linear-gradient(to top, var(--plum-deep), transparent);
+    }
+
+    /* Decorative Elements */
+    .hero-deco-circle {
+      position: absolute;
+      width: 500px; height: 500px;
+      border-radius: 50%;
+      border: 1px solid rgba(200,147,58,0.08);
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+    .hero-deco-circle:nth-child(2) {
+      width: 700px; height: 700px;
+      border-color: rgba(200,147,58,0.05);
+    }
+
+    .hero-scroll-hint {
+      position: absolute;
+      bottom: 2rem; left: 6rem;
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      display: flex; align-items: center; gap: 1rem;
+      z-index: 3;
+    }
+    .scroll-line {
+      width: 1px; height: 50px;
+      background: linear-gradient(to bottom, var(--gold), transparent);
+      animation: scrollPulse 2s ease infinite;
+    }
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 0.3; }
+      50% { opacity: 1; }
+    }
+
+    /* ─── SECTION BASE ────────────────────────────── */
+    section { position: relative; z-index: 2; }
+
+    .section-label {
+      font-size: 0.6rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1rem;
+      display: flex; align-items: center; gap: 1rem;
+    }
+    .section-label::after {
+      content: '';
+      flex: 1; height: 1px;
+      background: linear-gradient(to right, rgba(200,147,58,0.4), transparent);
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.5rem, 4vw, 4rem);
+      font-weight: 700;
+      line-height: 1;
+      margin-bottom: 1rem;
+    }
+
+    /* ─── ABOUT ─────────────────────────────────────── */
+    #about {
+      padding: 8rem 6rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: center;
+      background: var(--plum);
+    }
+
+    .about-photos {
+      position: relative;
+      height: 600px;
+    }
+    .about-photo {
+      position: absolute;
+      border: 2px solid rgba(200,147,58,0.2);
+      overflow: hidden;
+    }
+    .about-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: sepia(0.1) contrast(1.05);
+      transition: transform 0.5s ease;
+    }
+    .about-photo:hover img { transform: scale(1.04); }
+    .about-photo:nth-child(1) {
+      width: 260px; height: 360px;
+      top: 0; left: 0;
+    }
+    .about-photo:nth-child(2) {
+      width: 220px; height: 290px;
+      bottom: 0; right: 0;
+      border-color: rgba(200,147,58,0.4);
+    }
+    .about-photo-accent {
+      position: absolute;
+      width: 120px; height: 120px;
+      border: 1px solid rgba(200,147,58,0.3);
+      top: 50%; right: 20%;
+      transform: translateY(-50%) rotate(15deg);
+      pointer-events: none;
+    }
+
+    .about-content {}
+    .about-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      font-weight: 300;
+      line-height: 1.9;
+      color: rgba(255,243,230,0.8);
+      margin-bottom: 2rem;
+    }
+
+    .about-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 2.5rem;
+      padding-top: 2.5rem;
+      border-top: 1px solid rgba(200,147,58,0.15);
+    }
+    .stat-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.8rem;
+      font-weight: 700;
+      color: var(--gold-light);
+      line-height: 1;
+      margin-bottom: 0.3rem;
+    }
+    .stat-label {
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    /* ─── SKILLS ─────────────────────────────────────── */
+    #skills {
+      padding: 8rem 6rem;
+      background: var(--plum-deep);
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      margin-top: 4rem;
+    }
+
+    .skill-card {
+      padding: 2rem 1.5rem;
+      border: 1px solid rgba(200,147,58,0.12);
+      background: rgba(56,25,50,0.4);
+      transition: border-color 0.3s, transform 0.3s, background 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+    .skill-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 2px;
+      background: linear-gradient(to right, var(--gold), transparent);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s ease;
+    }
+    .skill-card:hover {
+      border-color: rgba(200,147,58,0.35);
+      transform: translateY(-4px);
+      background: rgba(56,25,50,0.7);
+    }
+    .skill-card:hover::before { transform: scaleX(1); }
+    .skill-cat {
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+    .skill-name {
+      font-family: 'Syne', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 0.8rem;
+    }
+    .skill-tags {
+      display: flex; flex-wrap: wrap; gap: 0.4rem;
+    }
+    .skill-tag {
+      font-size: 0.55rem;
+      letter-spacing: 0.1em;
+      padding: 0.25rem 0.6rem;
+      background: rgba(200,147,58,0.1);
+      border: 1px solid rgba(200,147,58,0.2);
+      color: var(--text-muted);
+    }
+
+    /* ─── PROJECTS ──────────────────────────────────── */
+    #projects {
+      padding: 8rem 6rem;
+      background: var(--plum);
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+      margin-top: 4rem;
+    }
+
+    .project-card {
+      padding: 2.5rem;
+      border: 1px solid rgba(200,147,58,0.15);
+      background: rgba(34,15,30,0.5);
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.4s, transform 0.3s;
+    }
+    .project-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; right: 0;
+      width: 80px; height: 80px;
+      background: radial-gradient(circle at bottom right, rgba(200,147,58,0.12), transparent 70%);
+      pointer-events: none;
+    }
+    .project-card:hover {
+      border-color: rgba(200,147,58,0.4);
+      transform: translateY(-3px);
+    }
+    .project-card.featured {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 2rem;
+      align-items: start;
+      background: rgba(56,25,50,0.6);
+      border-color: rgba(200,147,58,0.25);
+    }
+
+    .project-num {
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      color: var(--gold);
+      margin-bottom: 1.2rem;
+    }
+    .project-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 0.8rem;
+      line-height: 1.2;
+    }
+    .project-desc {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      font-weight: 300;
+      line-height: 1.7;
+      color: rgba(255,243,230,0.7);
+      margin-bottom: 1.5rem;
+    }
+    .project-stack {
+      display: flex; flex-wrap: wrap; gap: 0.5rem;
+    }
+    .stack-tag {
+      font-size: 0.55rem;
+      letter-spacing: 0.12em;
+      padding: 0.3rem 0.8rem;
+      border: 1px solid rgba(200,147,58,0.3);
+      color: var(--gold-light);
+      text-transform: uppercase;
+    }
+    .project-arrow {
+      font-size: 1.5rem;
+      color: var(--gold);
+      opacity: 0.4;
+      align-self: flex-start;
+      transition: opacity 0.3s, transform 0.3s;
+    }
+    .project-card:hover .project-arrow {
+      opacity: 1;
+      transform: translate(3px, -3px);
+    }
+
+    /* ─── EXPERIENCE ───────────────────────────────── */
+    #experience {
+      padding: 8rem 6rem;
+      background: var(--plum-deep);
+    }
+
+    .timeline {
+      margin-top: 4rem;
+      position: relative;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 1px;
+      background: linear-gradient(to bottom, var(--gold), rgba(200,147,58,0.1));
+    }
+
+    .timeline-item {
+      padding-left: 3rem;
+      padding-bottom: 3.5rem;
+      position: relative;
+    }
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -4px; top: 6px;
+      width: 9px; height: 9px;
+      background: var(--gold);
+      border-radius: 50%;
+      box-shadow: 0 0 12px rgba(200,147,58,0.5);
+    }
+
+    .timeline-date {
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.5rem;
+    }
+    .timeline-role {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 0.3rem;
+    }
+    .timeline-company {
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+    }
+    .timeline-points { list-style: none; }
+    .timeline-points li {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      font-weight: 300;
+      color: rgba(255,243,230,0.7);
+      line-height: 1.8;
+      padding-left: 1.2rem;
+      position: relative;
+      margin-bottom: 0.3rem;
+    }
+    .timeline-points li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--gold);
+      font-size: 0.8rem;
+    }
+
+    /* ─── CONTACT ──────────────────────────────────── */
+    #contact {
+      padding: 8rem 6rem;
+      background: var(--plum);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: center;
+    }
+
+    .contact-big {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3rem, 5vw, 5.5rem);
+      font-weight: 700;
+      line-height: 1;
+      margin-bottom: 1.5rem;
+    }
+    .contact-big em {
+      font-style: italic;
+      color: var(--gold-light);
+      font-weight: 300;
+    }
+    .contact-sub {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-weight: 300;
+      color: rgba(255,243,230,0.6);
+      line-height: 1.8;
+    }
+
+    .contact-links {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .contact-link {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      padding: 1.5rem 2rem;
+      border: 1px solid rgba(200,147,58,0.15);
+      text-decoration: none;
+      color: var(--milk);
+      transition: border-color 0.3s, background 0.3s, transform 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+    .contact-link:hover {
+      border-color: rgba(200,147,58,0.5);
+      background: rgba(200,147,58,0.06);
+      transform: translateX(6px);
+    }
+    .contact-icon {
+      font-size: 1.4rem;
+      flex-shrink: 0;
+    }
+    .contact-link-label {
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      display: block;
+      margin-bottom: 0.2rem;
+    }
+    .contact-link-val {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      font-weight: 400;
+    }
+    .contact-link-arrow {
+      margin-left: auto;
+      color: var(--gold);
+      opacity: 0;
+      transition: opacity 0.3s, transform 0.3s;
+    }
+    .contact-link:hover .contact-link-arrow {
+      opacity: 1;
+      transform: translateX(4px);
+    }
+
+    /* ─── FOOTER ───────────────────────────────────── */
+    footer {
+      padding: 2rem 6rem;
+      background: var(--plum-deep);
+      border-top: 1px solid rgba(200,147,58,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .footer-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      color: var(--gold-light);
+    }
+    .footer-copy {
+      font-size: 0.6rem;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+    }
+
+    /* ─── ANIMATIONS ───────────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+
+    /* Hero Animation */
+    .hero-left > * {
+      opacity: 0;
+      transform: translateY(24px);
+      animation: heroReveal 0.9s ease forwards;
+    }
+    .hero-left > *:nth-child(1) { animation-delay: 0.3s; }
+    .hero-left > *:nth-child(2) { animation-delay: 0.5s; }
+    .hero-left > *:nth-child(3) { animation-delay: 0.65s; }
+    .hero-left > *:nth-child(4) { animation-delay: 0.78s; }
+    .hero-left > *:nth-child(5) { animation-delay: 0.9s; }
+
+    .hero-right {
+      opacity: 0;
+      animation: heroFade 1.2s ease 0.4s forwards;
+    }
+    @keyframes heroReveal {
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes heroFade {
+      to { opacity: 1; }
+    }
+
+    /* ─── RESPONSIVE ──────────────────────────────── */
+    @media (max-width: 1024px) {
+      nav { padding: 1.2rem 2rem; }
+      #hero { grid-template-columns: 1fr; }
+      .hero-right { height: 50vh; position: relative; }
+      .hero-left { padding: 7rem 2rem 3rem; }
+      #about, #contact { grid-template-columns: 1fr; padding: 5rem 2rem; }
+      .about-photos { height: 350px; }
+      #skills, #projects, #experience { padding: 5rem 2rem; }
+      .skills-grid { grid-template-columns: repeat(2, 1fr); }
+      .projects-grid { grid-template-columns: 1fr; }
+      .project-card.featured { grid-column: 1; grid-template-columns: 1fr; }
+      footer { padding: 1.5rem 2rem; flex-direction: column; gap: 0.5rem; text-align: center; }
+      .hero-scroll-hint { left: 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Custom Cursor -->
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">DP</div>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-left">
+      <div class="hero-tag">Data Analyst &amp; AI Builder</div>
+      <h1 class="hero-name">
+        Debasish<span>Panda.</span>
+      </h1>
+      <p class="hero-title">
+        Power BI · AI Automation · Business Intelligence<br>
+        Kolkata, India
+      </p>
+      <p class="hero-bio">
+        Turning raw business data into clear insights. Building AI-powered systems that actually work — from HR platforms to meeting intelligence tools.
+      </p>
+      <div class="hero-cta">
+        <a href="#projects" class="btn-primary">View Projects</a>
+        <a href="#contact" class="btn-outline">Get In Touch</a>
+      </div>
+    </div>
+
+    <div class="hero-right">
+      <!-- Using base64 placeholder — photo would be embedded in production -->
+      <div class="hero-photo-frame">
+        <img src="/mnt/user-data/uploads/file_00000000498c7208840507ec9d1381c1.png" alt="Debasish Panda" />
+      </div>
+      <div class="hero-photo-overlay"></div>
+      <div class="hero-photo-bottom"></div>
+    </div>
+
+    <div class="hero-deco-circle"></div>
+    <div class="hero-deco-circle"></div>
+
+    <div class="hero-scroll-hint">
+      <div class="scroll-line"></div>
+      Scroll
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="about-photos reveal">
+      <div class="about-photo">
+        <img src="/mnt/user-data/uploads/file_000000009a987208832d96ef5ecda032.png" alt="Debasish Panda" />
+      </div>
+      <div class="about-photo">
+        <img src="/mnt/user-data/uploads/1778938658814.png" alt="Debasish Panda" />
+      </div>
+      <div class="about-photo-accent"></div>
+    </div>
+
+    <div class="about-content reveal reveal-delay-2">
+      <div class="section-label">About Me</div>
+      <h2 class="section-title">Data meets<br><em style="font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--gold-light);font-weight:300;">intelligence.</em></h2>
+      <p class="about-text">
+        Data Analyst with a strong foundation in BI dashboards, requirements gathering, and AI-powered automation. I specialize in turning complex business data into clear, actionable insights — across HR, finance, compliance, and operations.
+      </p>
+      <p class="about-text">
+        Currently at Chelson Gordon Consultancy, I build Power BI dashboards, automate workflows with Claude &amp; ChatGPT APIs, and deliver AI training programs for internal teams. MBA candidate in Business Analytics &amp; Data Science at EIILM Kolkata.
+      </p>
+
+      <div class="about-stats">
+        <div>
+          <div class="stat-num">5+</div>
+          <div class="stat-label">AI Projects Built</div>
+        </div>
+        <div>
+          <div class="stat-num">2</div>
+          <div class="stat-label">Years Experience</div>
+        </div>
+        <div>
+          <div class="stat-num">MBA</div>
+          <div class="stat-label">Business Analytics</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div style="max-width:900px;">
+      <div class="section-label reveal">Expertise</div>
+      <h2 class="section-title reveal reveal-delay-1">What I bring<br><em style="font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--gold-light);font-weight:300;">to the table.</em></h2>
+    </div>
+
+    <div class="skills-grid">
+      <div class="skill-card reveal">
+        <div class="skill-cat">Analytics</div>
+        <div class="skill-name">Business Intelligence</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Power BI</span>
+          <span class="skill-tag">DAX</span>
+          <span class="skill-tag">Power Query</span>
+          <span class="skill-tag">KPI Reporting</span>
+        </div>
+      </div>
+      <div class="skill-card reveal reveal-delay-1">
+        <div class="skill-cat">AI & Automation</div>
+        <div class="skill-name">AI Development</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Claude API</span>
+          <span class="skill-tag">ChatGPT API</span>
+          <span class="skill-tag">Prompt Engineering</span>
+        </div>
+      </div>
+      <div class="skill-card reveal reveal-delay-2">
+        <div class="skill-cat">Engineering</div>
+        <div class="skill-name">Data & Code</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Python</span>
+          <span class="skill-tag">SQL</span>
+          <span class="skill-tag">Excel</span>
+          <span class="skill-tag">React.js</span>
+        </div>
+      </div>
+      <div class="skill-card reveal reveal-delay-3">
+        <div class="skill-cat">Domain</div>
+        <div class="skill-name">Business Context</div>
+        <div class="skill-tags">
+          <span class="skill-tag">HR Systems</span>
+          <span class="skill-tag">Payroll</span>
+          <span class="skill-tag">RTO/EdTech</span>
+          <span class="skill-tag">Finance</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div style="max-width:900px;">
+      <div class="section-label reveal">Work</div>
+      <h2 class="section-title reveal reveal-delay-1">Things I've<br><em style="font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--gold-light);font-weight:300;">built.</em></h2>
+    </div>
+
+    <div class="projects-grid">
+      <!-- Featured -->
+      <div class="project-card featured reveal">
+        <div>
+          <div class="project-num">01 — Featured</div>
+          <h3 class="project-title">NexaHR</h3>
+          <p class="project-desc">Full-stack AI-powered HR management system covering hiring, payroll, finance, and attendance — with an integrated AI assistant built on Claude API. A complete company management platform.</p>
+          <div class="project-stack">
+            <span class="stack-tag">React.js</span>
+            <span class="stack-tag">Claude API</span>
+            <span class="stack-tag">AI Assistant</span>
+            <span class="stack-tag">HR Systems</span>
+          </div>
+        </div>
+        <div class="project-arrow">↗</div>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-num">02</div>
+        <h3 class="project-title">MOM Generator</h3>
+        <p class="project-desc">AI meeting intelligence tool that converts Microsoft Teams transcripts into structured Word documents using a 3-tier noise-handling system.</p>
+        <div class="project-stack">
+          <span class="stack-tag">Python</span>
+          <span class="stack-tag">ChatGPT API</span>
+          <span class="stack-tag">python-docx</span>
+        </div>
+        <div class="project-arrow">↗</div>
+      </div>
+
+      <div class="project-card reveal reveal-delay-1">
+        <div class="project-num">03</div>
+        <h3 class="project-title">AI Resume Scanner</h3>
+        <p class="project-desc">Candidate-to-JD matching tool using Claude API to automate resume screening, scoring, and ranking — reducing manual HR workload.</p>
+        <div class="project-stack">
+          <span class="stack-tag">React.js</span>
+          <span class="stack-tag">Claude API</span>
+          <span class="stack-tag">HR Tech</span>
+        </div>
+        <div class="project-arrow">↗</div>
+      </div>
+
+      <div class="project-card reveal reveal-delay-2">
+        <div class="project-num">04</div>
+        <h3 class="project-title">Power BI Dashboards</h3>
+        <p class="project-desc">Amazon Sales Analysis and CRED User Interaction dashboards with advanced DAX measures, drill-throughs, and dynamic filters. AIBT competency compliance reporting.</p>
+        <div class="project-stack">
+          <span class="stack-tag">Power BI</span>
+          <span class="stack-tag">DAX</span>
+          <span class="stack-tag">Power Query</span>
+        </div>
+        <div class="project-arrow">↗</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div style="max-width:900px; margin-bottom:0;">
+      <div class="section-label reveal">Career</div>
+      <h2 class="section-title reveal reveal-delay-1">Where I've<br><em style="font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--gold-light);font-weight:300;">worked.</em></h2>
+    </div>
+
+    <div class="timeline">
+      <div class="timeline-item reveal">
+        <div class="timeline-date">Apr 2026 — Present</div>
+        <div class="timeline-role">Data Analyst</div>
+        <div class="timeline-company">Chelson Gordon Consultancy · Kolkata, India</div>
+        <ul class="timeline-points">
+          <li>Build Power BI dashboards and reports across HR, compliance, and operations</li>
+          <li>Automate data workflows using Claude API and ChatGPT</li>
+          <li>Deliver AI training programs for internal staff</li>
+          <li>Support payroll, attendance, and qualification compliance reporting for AIBT programs</li>
+        </ul>
+      </div>
+      <div class="timeline-item reveal reveal-delay-1">
+        <div class="timeline-date">Jun — Jul 2024</div>
+        <div class="timeline-role">Business Analyst Intern</div>
+        <div class="timeline-company">SEOORB Digital Solutions · Kolkata, India</div>
+        <ul class="timeline-points">
+          <li>Analyzed business processes across marketing, sales, and operations</li>
+          <li>Prepared reports and KPI summaries for stakeholders</li>
+          <li>Gathered requirements and recommended data-driven process improvements</li>
+        </ul>
+      </div>
+      <div class="timeline-item reveal reveal-delay-2">
+        <div class="timeline-date">Expected Aug 2026</div>
+        <div class="timeline-role">MBA — Business Analytics & Data Science</div>
+        <div class="timeline-company">EIILM Kolkata · Previously BBA in Marketing</div>
+        <ul class="timeline-points">
+          <li>Specialization in Business Analytics and Data Science</li>
+          <li>Foundation in Marketing strategy and business management</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="reveal">
+      <div class="section-label">Let's Connect</div>
+      <h2 class="contact-big">Let's build<br>something<br><em>great.</em></h2>
+      <p class="contact-sub" style="margin-top:1.5rem;">Open to collaborations, freelance projects, and new opportunities. Drop a message — I reply fast.</p>
+    </div>
+
+    <div class="contact-links reveal reveal-delay-2">
+      <a href="mailto:debasishpanda622@gmail.com" class="contact-link">
+        <span class="contact-icon">✉</span>
+        <div>
+          <span class="contact-link-label">Email</span>
+          <span class="contact-link-val">debasishpanda622@gmail.com</span>
+        </div>
+        <span class="contact-link-arrow">→</span>
+      </a>
+      <a href="https://www.linkedin.com/in/debasish-panda845" target="_blank" class="contact-link">
+        <span class="contact-icon">in</span>
+        <div>
+          <span class="contact-link-label">LinkedIn</span>
+          <span class="contact-link-val">debasish-panda845</span>
+        </div>
+        <span class="contact-link-arrow">→</span>
+      </a>
+      <a href="https://github.com/Debasishpanda-code" target="_blank" class="contact-link">
+        <span class="contact-icon">⌥</span>
+        <div>
+          <span class="contact-link-label">GitHub</span>
+          <span class="contact-link-val">Debasishpanda-code</span>
+        </div>
+        <span class="contact-link-arrow">→</span>
+      </a>
+      <a href="/mnt/user-data/uploads/Debasish_Panda_ResumeEY.pdf" download class="contact-link">
+        <span class="contact-icon">↓</span>
+        <div>
+          <span class="contact-link-label">Resume</span>
+          <span class="contact-link-val">Download CV</span>
+        </div>
+        <span class="contact-link-arrow">→</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-name">Debasish Panda</div>
+    <div class="footer-copy">© 2026 · Kolkata, India · Data Analyst & AI Builder</div>
+  </footer>
+
+  <script>
+    // Custom Cursor
+    const cursor = document.getElementById('cursor');
+    const ring = document.getElementById('cursorRing');
+    let mx = 0, my = 0, rx = 0, ry = 0;
+    document.addEventListener('mousemove', e => {
+      mx = e.clientX; my = e.clientY;
+      cursor.style.left = mx + 'px';
+      cursor.style.top = my + 'px';
+    });
+    function animateRing() {
+      rx += (mx - rx) * 0.12;
+      ry += (my - ry) * 0.12;
+      ring.style.left = rx + 'px';
+      ring.style.top = ry + 'px';
+      requestAnimationFrame(animateRing);
+    }
+    animateRing();
+
+    // Scale cursor on hover
+    document.querySelectorAll('a, button, .project-card, .skill-card, .contact-link').forEach(el => {
+      el.addEventListener('mouseenter', () => {
+        cursor.style.transform = 'translate(-50%,-50%) scale(2.5)';
+        ring.style.width = '60px'; ring.style.height = '60px';
+      });
+      el.addEventListener('mouseleave', () => {
+        cursor.style.transform = 'translate(-50%,-50%) scale(1)';
+        ring.style.width = '36px'; ring.style.height = '36px';
+      });
+    });
+
+    // Scroll Reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('visible'); }
+      });
+    }, { threshold: 0.12 });
+    reveals.forEach(r => observer.observe(r));
+
+    // Smooth nav links
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        e.preventDefault();
+        document.querySelector(a.getAttribute('href'))?.scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+  </script>
+</body>
+</html>
