@@ -144,6 +144,14 @@ h1 em{color:var(--cyan)}
 @keyframes stationOrbit{0%,100%{opacity:.4;scale:1}50%{opacity:.9;scale:1.08}}
 @media(max-width:760px){.projects-panel,.deepdive{margin-left:-18px;margin-right:-18px;padding-left:18px;padding-right:18px}.project,.project:nth-child(even){grid-template-columns:1fr;min-height:0}.project:nth-child(even) .project-art,.project:nth-child(even) .project-body{order:initial}.project-art{min-height:210px;border:0!important;border-bottom:1px solid var(--scene-line)!important}.project-body{padding:24px 18px 28px}.project h3{font-size:29px}.deepdive{grid-template-columns:1fr}.flow{grid-template-columns:repeat(3,1fr);row-gap:25px}.flow:before{display:none}#about .right-card{grid-template-columns:1fr}.about-photo{height:320px;justify-self:start}.contact-content{grid-template-columns:1fr}.cert{border-bottom:1px solid var(--scene-line)}}
 @media(prefers-reduced-motion:reduce){.project-art:after{animation:none}}
+
+/* VISIBILITY HOTFIX — content must never depend on scroll observers */
+.reveal-ready .proofbar,.reveal-ready .projects-panel,.reveal-ready .deepdive,.reveal-ready .right-section .right-card,
+.reveal-ready .is-visible{opacity:1!important;transform:none!important;visibility:visible!important}
+.right-section .right-card{position:relative;z-index:1}
+.right-section{min-height:0}
+.right-section .right-inner{position:relative;z-index:1}
+@media(max-width:760px){.right-section{padding:54px 0}}
 </style>
 </head>
 <body><section id="world-entry" aria-label="Interactive 3D portfolio map"><canvas id="world-canvas"></canvas><div class="world-top"><div class="world-brand">DEBASISH PANDA<small>AI AUTOMATION · SYSTEMS ENGINEERING</small></div><div class="world-status">● SYSTEM ONLINE / INDIA</div></div><div class="world-title"><div class="eyebrow">INTERACTIVE PORTFOLIO / 01</div><h1>Intelligence,<br><span>beautifully</span><br>engineered.</h1><p>I turn complex business processes into intelligent, connected systems — built for the way people work.</p><div class="world-hint">● SELECT A STATION TO EXPLORE</div></div><button class="world-label" data-target="projects">Works</button><button class="world-label" data-target="about">About me</button><button class="world-label" data-target="skills">Skills</button><button class="world-label" data-target="certifications">Certifications</button><button class="world-label" data-target="experience">Experience</button><a class="world-label" data-target="resume" href="assets/Debasish_Panda_AI_Automation_Engineer_Resume.pdf" target="_blank" rel="noopener">Resume</a><button class="world-label" data-target="contact">Contact</button><div class="world-footer"><span><strong>DRAG</strong> TO ROTATE · <strong>SCROLL</strong> TO ZOOM</span><span class="world-scroll">SCROLL TO ENTER THE SYSTEM</span><div class="world-controls"><button id="world-reset">RESET VIEW ↺</button><button id="world-enter">EXPLORE ↓</button></div></div></section><div class="site">
