@@ -20,6 +20,86 @@
 @media(max-width:1100px){.left-inner,.right-inner{padding:0 32px}.hero{min-height:500px;grid-template-columns:1fr 1fr}.hero-visual{height:420px}.laptop{width:min(100%,500px)}.screen{height:260px}.screen-ui{height:205px}.contact-panel{padding:30px 32px}.right-section{padding:30px 0}}
 @media(max-width:620px){.left-inner,.right-inner{padding:0 18px}.right-section{padding:22px 0;border-bottom:1px solid #303a3b}.navlinks{gap:10px;font-size:9px}.navlinks a:not(.navcta){display:none}.navcta{padding:8px 12px}.hero{grid-template-columns:1fr;gap:0;padding:34px 0 18px;min-height:0}.hero h1{font-size:clamp(42px,11vw,58px);max-width:600px}.lead{font-size:14px}.hero-visual{height:320px;margin-top:8px;padding-bottom:26px}.laptop{width:94%;max-width:520px}.screen{height:230px}.screen-ui{height:175px}.proofbar{grid-template-columns:repeat(2,1fr);gap:15px 8px;padding:14px 0}.proof b{font-size:10px}.proof small{font-size:8px}.projects-panel{padding:14px 11px}.section-head h2{font-size:24px}.project-grid{grid-template-columns:1fr;gap:10px}.project{display:grid;grid-template-columns:42% 58%;min-height:140px}.project-art{height:auto;min-height:140px}.project-body{padding:10px}.project p{min-height:0;font-size:9px}.chips{margin:7px 0}.deepdive{grid-template-columns:1fr;padding:15px}.flow{grid-template-columns:repeat(3,1fr);gap:12px 5px}.flow-step:nth-child(3):after{display:none}.right-head h2{font-size:23px}.right-head p{max-width:130px}.tech-icons{grid-template-columns:repeat(4,1fr)}.about-card{grid-template-columns:1fr 115px;gap:12px}.about-card h2{font-size:23px}.about-card p{font-size:9px}.about-photo{height:185px}.cert-grid{grid-template-columns:1fr 1fr}.contact-content{grid-template-columns:1fr}.contact-meta{grid-column:1}.contact-actions{justify-content:flex-start}.contact-card h2{font-size:24px}.footer{padding:12px 17px;flex-direction:column;gap:6px}}
 
+
+/* IMMERSIVE SYSTEM-WIDE VISUAL LANGUAGE */
+:root{--cyan:#62efff;--ice:#dffaff;--deep:#050b12;--wire:rgba(73,205,225,.22)}
+body{background:#040910;color:#e8f8fb;background-image:radial-gradient(ellipse at 50% 0%,rgba(12,80,100,.22),transparent 45%),linear-gradient(180deg,#050a11,#07111a 48%,#040910)}
+.site{max-width:none;background:transparent}
+.left-inner,.right-inner{max-width:1540px}
+.left-inner{position:relative}
+nav{border-color:var(--wire)}
+.brand span,.eyebrow,.viewall{color:var(--cyan)}
+.navcta,.btn.primary{background:linear-gradient(135deg,#dffaff,#62d9e8);color:#041016!important}
+.navcta{box-shadow:0 0 22px rgba(68,223,242,.18)}
+.hero{min-height:570px}
+.hero:before{background:radial-gradient(ellipse 38% 48% at 95% 0%,rgba(61,213,231,.2),transparent 70%),repeating-conic-gradient(from 238deg at 100% 0%,transparent 0deg 5deg,rgba(83,225,242,.11) 5.5deg 6.3deg,transparent 7deg 12deg)}
+.hero:after{background:linear-gradient(90deg,rgba(4,9,16,.15),rgba(4,9,16,.04) 55%,rgba(4,9,16,.22))}
+h1 em{color:var(--cyan)}
+.pill{border-color:rgba(98,239,255,.4);background:rgba(43,183,205,.08)}
+.hero-glow{background:radial-gradient(ellipse at 52% 50%,rgba(49,211,231,.2),transparent 65%)}
+.screen{border-color:#132b34;box-shadow:inset 0 0 0 1px #3e8290,0 0 36px rgba(39,196,219,.12)}
+.laptop-base{background:linear-gradient(#9cc4c8,#203a42 40%,#08141b 85%)}
+.proofbar{border-color:var(--wire);position:relative}
+.proof-icon{color:var(--cyan)}
+/* Each content region becomes a navigable 3D station */
+.projects-panel,.deepdive,.right-card,.contact-card{
+ position:relative;isolation:isolate;overflow:hidden;
+ border:1px solid rgba(75,204,225,.28);
+ background:linear-gradient(145deg,rgba(8,23,33,.94),rgba(5,12,20,.97));
+ box-shadow:0 18px 55px rgba(0,0,0,.26),inset 0 1px rgba(174,246,255,.05);
+}
+.projects-panel:before,.deepdive:before,.right-card:before,.contact-card:before{
+ content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
+ background:radial-gradient(ellipse at 90% 0%,rgba(46,197,218,.14),transparent 42%),linear-gradient(120deg,transparent 45%,rgba(81,216,233,.035),transparent 70%);
+}
+.projects-panel{border-radius:18px;padding:24px 24px 26px;margin:24px 0}
+.section-head h2,.right-head h2{color:#eafcff}
+.project-grid{perspective:1200px}
+.project{background:linear-gradient(145deg,#10232c,#07131d);border-color:rgba(90,210,230,.3);transform-style:preserve-3d;transition:transform .35s ease,border-color .35s ease,box-shadow .35s ease}
+.project:hover{border-color:rgba(98,239,255,.8);box-shadow:0 22px 40px rgba(0,0,0,.38),0 0 24px rgba(56,205,224,.1)}
+.project-art{background:radial-gradient(ellipse at 72% 24%,rgba(68,216,232,.22),transparent 55%),linear-gradient(135deg,#17313b,#07131b)}
+.art-label{background:linear-gradient(120deg,#dffaff,#5bd9e9);color:#041016}
+.chip,.skill-tags span{background:rgba(35,91,105,.2);border-color:rgba(83,194,213,.24);color:#d5f4f7}
+.deepdive{grid-template-columns:.8fr 1.2fr;border-radius:16px;margin:20px 0 30px;padding:22px}
+.flow-icon{border-color:rgba(98,239,255,.5);background:rgba(44,173,194,.1);color:var(--cyan)}
+.flow-result{border-color:var(--wire);color:var(--cyan)}
+.right-section{padding:42px 0;border-color:var(--wire);isolation:isolate}
+.right-section:before{content:"";position:absolute;inset:0;z-index:-2;pointer-events:none;background:radial-gradient(ellipse at 82% 35%,rgba(15,119,145,.13),transparent 52%)}
+.right-section:after{content:"";position:absolute;z-index:-1;pointer-events:none;left:0;right:0;bottom:-1px;height:120px;opacity:.38;background-image:linear-gradient(var(--wire) 1px,transparent 1px),linear-gradient(90deg,var(--wire) 1px,transparent 1px);background-size:38px 38px;transform:perspective(380px) rotateX(58deg);transform-origin:bottom;mask-image:linear-gradient(transparent,black)}
+.right-card{border-radius:18px;padding:30px 32px;backdrop-filter:blur(12px)}
+.tech-icon{background:linear-gradient(145deg,#142a34,#08151e);border-color:rgba(83,194,213,.3);box-shadow:inset 0 1px rgba(220,252,255,.06)}
+.tech-icon:nth-child(n){color:#a8f4fb}
+.about-photo{border-color:rgba(98,239,255,.45);box-shadow:0 0 32px rgba(37,194,215,.13)}
+.cert{background:linear-gradient(145deg,#142a34,#08151e);border-color:rgba(83,194,213,.28);transition:transform .3s,border-color .3s}
+.cert:hover{transform:translateY(-5px);border-color:var(--cyan)}
+.cert-logo,.cert small{color:var(--cyan)!important}
+.contact-panel{background:radial-gradient(ellipse at 50% -8%,rgba(42,188,208,.24),transparent 48%),linear-gradient(160deg,#0b1b25,#040910);border-color:var(--wire)}
+.contact-card{background:rgba(6,17,25,.88);border-color:rgba(98,239,255,.4)}
+.contact-card:before{background:radial-gradient(ellipse at 90% 0%,rgba(51,207,226,.16),transparent 55%)}
+.contact-panel:after{background:linear-gradient(165deg,transparent 0 34%,rgba(74,214,232,.1) 35%,transparent 39%),linear-gradient(155deg,transparent 0 64%,rgba(74,214,232,.08) 65%,transparent 69%)}
+.footer{border-top:1px solid var(--wire);color:#8fb7c0}
+/* 3D station markers, depth and reveal choreography */
+.projects-panel,.deepdive,.right-card,.proofbar,.contact-card{transform-style:preserve-3d}
+.right-section .right-inner{position:relative;z-index:1}
+.section-head:before,.right-head:before{content:"";display:block;width:5px;height:30px;position:absolute;left:0;background:linear-gradient(var(--cyan),transparent);border-radius:5px}
+.section-head,.right-head{position:relative;padding-left:14px}
+.eyebrow:before{content:"◈ ";color:var(--cyan)}
+.project,.cert,.tech-icon,.proof{transition:transform .35s ease,border-color .35s ease,box-shadow .35s ease}
+.project:hover{transform:translateY(-7px) rotateX(2deg)}
+.tech-icon:hover{transform:translateY(-4px) rotateY(8deg);border-color:var(--cyan);box-shadow:0 10px 24px rgba(39,196,219,.13)}
+.proof{padding:10px;border:1px solid transparent;border-radius:10px}
+.proof:hover{border-color:var(--wire);background:rgba(27,108,124,.1);transform:translateY(-3px)}
+.reveal-ready .projects-panel,.reveal-ready .deepdive,.reveal-ready .right-section .right-card,.reveal-ready .proofbar{opacity:0;transform:translateY(28px) rotateX(2deg);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1)}
+.reveal-ready .is-visible{opacity:1;transform:translateY(0) rotateX(0)}
+@media(max-width:620px){
+ .projects-panel{padding:16px 12px;margin:16px 0}
+ .right-card{padding:20px 17px}
+ .deepdive{padding:16px}
+ .right-section:after{height:70px;background-size:26px 26px}
+ .project:hover{transform:none}
+}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;transition:none!important;animation:none!important}.reveal-ready .projects-panel,.reveal-ready .deepdive,.reveal-ready .right-section .right-card,.reveal-ready .proofbar{opacity:1;transform:none}}
+
 </style>
 </head>
 <body><section id="world-entry" aria-label="Interactive 3D portfolio map"><canvas id="world-canvas"></canvas><div class="world-top"><div class="world-brand">DEBASISH PANDA<small>AI AUTOMATION · SYSTEMS ENGINEERING</small></div><div class="world-status">● SYSTEM ONLINE / INDIA</div></div><div class="world-title"><div class="eyebrow">INTERACTIVE PORTFOLIO / 01</div><h1>Building <span>intelligent</span><br>systems.</h1><p>Explore the work, tools and systems behind practical AI automation and real-world operations.</p><div class="world-hint">● SELECT A STATION TO EXPLORE</div></div><button class="world-label" data-target="projects">Works</button><button class="world-label" data-target="about">About me</button><button class="world-label" data-target="skills">Skills</button><button class="world-label" data-target="certifications">Certifications</button><button class="world-label" data-target="experience">Experience</button><a class="world-label" data-target="resume" href="assets/Debasish_Panda_AI_Automation_Engineer_Resume.pdf" target="_blank" rel="noopener">Resume</a><button class="world-label" data-target="contact">Contact</button><div class="world-footer"><span><strong>DRAG</strong> TO ROTATE · <strong>SCROLL</strong> TO ZOOM</span><span class="world-scroll">SCROLL TO ENTER THE SYSTEM</span><div class="world-controls"><button id="world-reset">RESET VIEW ↺</button><button id="world-enter">EXPLORE ↓</button></div></div></section><div class="site">
@@ -76,4 +156,27 @@ function resize(){let w=root.clientWidth,h=root.clientHeight;camera.aspect=w/h;c
 function animate(t){requestAnimationFrame(animate);let time=t*.001;core.rotation.y=time*.13;halo.rotation.z=-time*.2;core.scale.setScalar(1+Math.sin(time*1.5)*.018);motesMesh.rotation.y=time*.008;cyanLight.intensity=82+Math.sin(time*2)*12;let radius=29/zoom;camera.position.set(Math.sin(rotY)*radius,18+rotX*20,Math.cos(rotY)*radius);camera.lookAt(0,0,0);stations.forEach((g,i)=>{g.position.y=Math.sin(time+i)*.035;g.rotation.y=Math.sin(time*.22+i)*.04});renderer.render(scene,camera)}animate(0);
 document.querySelectorAll('.world-label[data-target]').forEach(el=>el.addEventListener('click',e=>{let id=el.dataset.target;if(id==='resume')return;e.preventDefault();document.getElementById(id==='experience'?'about':id)?.scrollIntoView({behavior:'smooth'})}));document.getElementById('world-reset').onclick=()=>{rotY=0;rotX=0;zoom=1};document.getElementById('world-enter').onclick=()=>document.getElementById('projects').scrollIntoView({behavior:'smooth'});
 }
-</script></body></html>
+</script>
+<script>
+(()=> {
+ const root=document.querySelector('.site'); if(!root || root.dataset.depthInit) return; root.dataset.depthInit='1';
+ document.body.classList.add('reveal-ready');
+ const revealTargets=[...document.querySelectorAll('.proofbar,.projects-panel,.deepdive,.right-section .right-card')];
+ if('IntersectionObserver' in window){
+  const io=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('is-visible');io.unobserve(e.target)}}),{threshold:.12});
+  revealTargets.forEach(el=>io.observe(el));
+ }else revealTargets.forEach(el=>el.classList.add('is-visible'));
+ const cards=document.querySelectorAll('.project,.cert,.tech-icon');
+ cards.forEach(card=>{
+  card.addEventListener('pointermove',e=>{
+   if(!matchMedia('(hover:hover) and (pointer:fine)').matches)return;
+   const r=card.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;
+   card.style.transform='translateY(-5px) rotateX('+(-y*5)+'deg) rotateY('+(x*6)+'deg)';
+  });
+  card.addEventListener('pointerleave',()=>card.style.removeProperty('transform'));
+ });
+ const sections=[...document.querySelectorAll('#projects,#skills,#about,#certifications,#contact')];
+ sections.forEach((s,i)=>{s.style.scrollMarginTop='22px';s.dataset.station=String(i+1).padStart(2,'0')});
+})();
+</script>
+</body></html>
