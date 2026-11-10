@@ -1,114 +1,53 @@
-# 👋 Hi, I'm Debasish Panda
+# Debasish Panda — AI Automation Engineer
 
-> **Data Analyst · AI Builder · BI Dashboard Developer**
-> Kolkata, India
+Portfolio: https://debasishpanda-code.github.io  
+LinkedIn: https://www.linkedin.com/in/debasish-panda845/  
+Location: Kolkata, India
 
-[![Portfolio](https://img.shields.io/badge/Portfolio-debasishpanda--code.github.io-381932?style=for-the-badge&logo=github&logoColor=FFF3E6)](https://debasishpanda-code.github.io)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-debasish--panda845-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/debasish-panda845)
-[![Email](https://img.shields.io/badge/Email-debasishpanda622@gmail.com-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:debasishpanda622@gmail.com)
+I independently design and deliver business automation and AI-enabled workflow systems. My work spans process discovery, solution architecture, API and application integrations, AI-assisted implementation, testing, troubleshooting and deployment.
 
----
+## Selected projects
 
-## 🌐 Live Portfolio
-**[https://debasishpanda-code.github.io](https://debasishpanda-code.github.io)**
+### 1. AI-assisted assessment grading
+Production workflow combining RAG knowledge retrieval, LLM-assisted grading, marked-copy review and trainer approval before approved results are written back to the learning platform.
 
----
+- Supabase PostgreSQL and pgvector
+- OpenAI text embeddings and LLM API integration
+- MCP-based workflow integrations
+- Human-in-the-loop trainer approval
+- Case study: [Assessment automation](assessment-automation-case-study.html)
 
-## 🧠 About Me
+Reported scale figures are labelled as project-reported; grading accuracy and operating cost are not claimed without verified measurement.
 
-Data Analyst with hands-on experience in Power BI dashboards, AI-powered automation, and business intelligence reporting. I specialize in turning complex business data into clear, actionable insights — across HR, finance, compliance, and operations.
+### 2. CLAS — Class Link Automation System
+A training-operations platform covering timetable processing, Zoom meeting creation and reuse, class-link distribution, meeting records, recording administration, trainer resources and execution history.
 
-Currently working at **Chelson Gordon Consultancy** as a Data Analyst, building dashboards, automating workflows using Claude API & ChatGPT API, and delivering AI training programs for internal teams.
+- Excel timetable processing
+- Zoom meeting operations
+- Review and exception handling
+- Operational dashboard and history
+- Case study: [CLAS](clas-case-study.html)
 
-MBA candidate in **Business Analytics & Data Science** at EIILM Kolkata.
+### 3. Recruitment workflow automation
+Automated recruitment administration from resume collection through candidate communications and related documentation. Approximately 40% time savings were reported for this workflow.
 
----
+- Case study: [Recruitment workflow](recruitment-workflow-case-study.html)
 
-## 🛠️ Tech Stack
+## Technical toolkit
 
-| Category | Tools |
-|----------|-------|
-| **BI & Analytics** | Power BI, DAX, Power Query, Excel |
-| **AI & APIs** | Claude API, ChatGPT API, Prompt Engineering |
-| **Programming** | Python, SQL, React.js |
-| **Domain** | HR Systems, Payroll, RTO/EdTech Compliance, Finance |
+- Automation: Microsoft Power Automate, HTTP/REST APIs, multi-application workflows
+- AI applications: LLM API integration, RAG, OpenAI embeddings, MCP integrations
+- Data: Supabase, PostgreSQL, pgvector, Excel, SharePoint
+- Development approach: AI-assisted development using Claude Code primarily, with occasional Codex and Google Antigravity
+- Analytics: Power BI, SQL, Excel and Python
 
----
+## How I work
 
-## 🚀 Featured Projects
+I use AI-assisted development tools to accelerate coding and debugging. I own the requirements, architecture, technical decisions, integration configuration, testing and delivery. I do not claim that every line of code was manually written.
 
-### 🤖 NexaHR
-> Full-stack AI-powered HR management system
+## Contact
 
-- Covers hiring, payroll, finance, and attendance
-- Integrated AI assistant built on Claude API
-- Built with **React.js + Claude API**
+- Email: debasishpanda622@gmail.com
+- LinkedIn: https://www.linkedin.com/in/debasish-panda845/
 
----
-
-### 📝 MOM Generator
-> AI Meeting Intelligence Tool
-
-- Converts Microsoft Teams transcripts into structured Word documents
-- 3-tier noise-handling system for clean output
-- Built with **Python + ChatGPT API + python-docx**
-
----
-
-### 📄 AI Resume Scanner
-> Automated Candidate Screening Tool
-
-- Matches candidates to job descriptions using Claude API
-- Automates resume scoring and ranking
-- Built with **React.js + Claude API**
-
----
-
-### 📊 Power BI Dashboards
-> Business Intelligence Dashboards
-
-- **Amazon Sales Analysis Dashboard** — advanced DAX, drill-throughs, dynamic filters
-- **CRED User Interaction Insights Dashboard** — user behavior analytics
-- **AIBT Competency Report** — student compliance KPIs across two qualification codes
-- Built with **Power BI + DAX + Power Query**
-
----
-
-## 💼 Experience
-
-```
-Data Analyst                          Apr 2026 – Present
-Chelson Gordon Consultancy · Kolkata, India
-
-Business Analyst Intern               Jun – Jul 2024
-SEOORB Digital Solutions · Kolkata, India
-```
-
----
-
-## 🎓 Education
-
-```
-MBA — Business Analytics & Data Science    Expected Aug 2026
-EIILM Kolkata
-
-BBA — Marketing
-EIILM Kolkata
-```
-
----
-
-## 📬 Connect With Me
-
-| Platform | Link |
-|----------|------|
-| 🌐 Portfolio | [debasishpanda-code.github.io](https://debasishpanda-code.github.io) |
-| 💼 LinkedIn | [linkedin.com/in/debasish-panda845](https://www.linkedin.com/in/debasish-panda845) |
-| 📧 Email | [debasishpanda622@gmail.com](mailto:debasishpanda622@gmail.com) |
-
----
-
-<p align="center">
-  <i>Open to collaborations, freelance projects, and new opportunities.</i><br/>
-  <b>Let's build something great together.</b>
-</p>
+Project descriptions are anonymised. Screenshots and metrics are subject to confidentiality and measurement limitations stated in each case study.
