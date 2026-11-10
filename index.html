@@ -225,7 +225,7 @@ lamp(g,0,.3,0,.7)}
 const moteGeo=new THREE.BufferGeometry(),motes=[];for(let i=0;i<220;i++)motes.push((Math.random()-.5)*38,Math.random()*5,(Math.random()-.5)*38);moteGeo.setAttribute('position',new THREE.Float32BufferAttribute(motes,3));const motesMesh=new THREE.Points(moteGeo,new THREE.PointsMaterial({color:0x8af7ff,size:.035,transparent:true,opacity:.65}));scene.add(motesMesh);
 let drag=false,lastX=0,lastY=0,rotY=0,rotX=0,zoom=1;canvas.addEventListener('pointerdown',e=>{drag=true;lastX=e.clientX;lastY=e.clientY;canvas.setPointerCapture(e.pointerId)});canvas.addEventListener('pointermove',e=>{if(!drag)return;rotY+=(e.clientX-lastX)*.004;rotX=THREE.MathUtils.clamp(rotX+(e.clientY-lastY)*.002,-.2,.3);lastX=e.clientX;lastY=e.clientY});canvas.addEventListener('pointerup',()=>drag=false);canvas.addEventListener('pointercancel',()=>drag=false);canvas.addEventListener('wheel',e=>{zoom=THREE.MathUtils.clamp(zoom+e.deltaY*.0008,.75,1.35)},{passive:true});
 function resize(){let w=root.clientWidth,h=root.clientHeight;camera.aspect=w/h;camera.updateProjectionMatrix();renderer.setSize(w,h);renderer.setPixelRatio(Math.min(devicePixelRatio,1.6))}new ResizeObserver(resize).observe(root);
-const labelOffsets={projects:[0,3.25,0],about:[0,3.1,0],skills:[0,2.5,0],certifications:[0,3.0,0],experience:[0,2.8,0],resume:[0,3.0,0],contact:[0,2.7,0]};
+const labelOffsets={projects:[0,3.25,0],about:[0,3.1,0],skills:[0,2.5,0],certifications:[0,3.0,0],experience:[3.8,2.0,0],resume:[0,3.0,0],contact:[0,2.7,0]};
 const labelEls=[...document.querySelectorAll('.world-label[data-target]')];
 const projectLabelAnchors=()=>{
  const w=root.clientWidth,h=root.clientHeight;
